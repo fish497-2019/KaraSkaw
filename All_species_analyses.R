@@ -1,0 +1,76 @@
+#Read in the csv files
+#assign the csv files to names
+L_bilineata <- read.csv("Davis Lepidepsetta billineata p2.csv")
+L_pacificus <- read.csv("karagiri lycodes pacificus.csv")
+P_vetulus <- read.csv("Ingrid Porphyrus vetulus.csv")
+A_purpurescens <- read.csv("Anoplarchus_purpurescens_spacial_auto_coorelation_fixed_UPDATED_4162019.csv")
+
+#Part of this weeks (week 8) assingment is to create a modified table
+#however the following modififications are not neccessary for figure ()
+library(dplyr)
+#Lets say I only wanted to look at hosts that actually had an infection
+#I could filter out hosts where C. mariae identified was less than one
+L_bilineata_hosts<- filter(L_bilineata, C_mariae_total > 1)
+L_pacficus_hosts <- filter(L_pacificus, C_mariae_total > 1)
+P_vetulus_hosts <- filter(P_vetulus, C_mariae_total > 1)
+A_purpurescens_hosts <- filter(A_purpurescens, C_mariae_total > 1)
+
+#Now I am making a plot using the orginial raw data files NOT the modified tables I
+#made above
+#load ggplot
+library(ggplot2)
+#plot the total C. mariae in host species vs. year
+ggplot(mappings = aes(x = year, y = C_mariae_total))+
+  geom_point(data = L_bilineata, aes(x = year, y = C_mariae_total), color = "blue")+
+  geom_point(data = L_pacificus, aes(x = year, y = C_mariae_total), color = "green")+
+  geom_point(data = P_vetulus, aes(x = year, y = C_mariae_total), color = "red")+
+  geom_point(data = A_purpurescens, aes(x = year, y = C_mariae_total), color = "orange")+
+  labs(x = "Year of host species collection", y = "Number of parasites per host species")
+  
+#These are some of the different types of code that I have tried to use to make a 
+#legend showing which color represents which host, but neither have worked
+
+#Attempt #1
+legend("left", 
+       legend = c("Rock Sole", "Eel pout","English sole","Prickleback"), 
+       col = c(rgb(0.2,0.4,0.1,0.7), 
+               rgb(0.8,0.4,0.1,0.7)), 
+       pch = c(17,19), 
+       bty = "n", 
+       pt.cex = 2, 
+       cex = 1.2, 
+       text.col = "black", 
+       horiz = F , 
+       inset = c(0.1, 0.1))
+#Attempt #2  
+legend("left", title = "Host Species", legend=c("Rock sole","Eel pout","English sole","Prickleback"),col=palette(10),pch=20,bg="white") 
+  
+  scale_color_manual(name="Host Species", values=c("blue", "green","red", "orange")) + 
+  guides(color = guide_legend(override.aes = list(alpha = 0)))
+
+#Attempt #3
+  legend(x = 1910, y = 42, legend, fill = NULL, col = "blue","red","orange","blue")
+         border = "black", lty, lwd, pch,
+         angle = 45, density = NULL, bty = "o", bg = par("bg"),
+         box.lwd = par("lwd"), box.lty = par("lty"), box.col = par("fg"),
+         pt.bg = NA, cex = 1, pt.cex = cex, pt.lwd = lwd,
+         xjust = 0, yjust = 1, x.intersp = 1, y.intersp = 1,
+         adj = c(0, 0.5), text.width = NULL, text.col = par("col"),
+         text.font = NULL, merge = do.lines && has.pch, trace = FALSE,
+         plot = TRUE, ncol = 1, horiz = FALSE, title = NULL,
+         inset = 0, xpd, title.col = text.col, title.adj = 0.5,
+         seg.len = 2) 
+
+#Attempt #4
+legend <- c("Rock Sole", "English Sole", "High cockscomb prickleback", "Black belly eelpout")
+legend(1910, 42= NULL, legend, fill = NULL, col = "blue","red","orange","blue",
+       border = "black", lty, lwd, pch,
+       angle = 45, density = NULL, bty = "o", bg = par("bg"),
+       box.lwd = par("lwd"), box.lty = par("lty"), box.col = par("fg"),
+       pt.bg = NA, cex = 1, pt.cex = cex, pt.lwd = lwd,
+       xjust = 0, yjust = 1, x.intersp = 1, y.intersp = 1,
+       adj = c(0, 0.5), text.width = NULL, text.col = par("col"),
+       text.font = NULL, merge = do.lines && has.pch, trace = FALSE,
+       plot = TRUE, ncol = 1, horiz = FALSE, title = NULL,
+       inset = 0, xpd, title.col = text.col, title.adj = 0.5,
+       seg.len = 2)  
