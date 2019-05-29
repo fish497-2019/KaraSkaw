@@ -1,0 +1,15 @@
+---
+title: "Comparison of C. mariae burden across definitive host species in Puget Sound"
+author: "Kara B. Skaw, Chelsea L. Wood"
+date: "May 29, 2019"
+output: html_document
+---
+##Concept
+
+Determing how the *Clavinema mariae* burden on definitive host species *Anoplarchus purpurescens*, *Lycodes pacificus*, *Parophyrus vetulus*, and *Lepidopsetta bilineata* in Puget Sound, Washington, has changed from past to present.
+
+In this document I will:
+
+1. Load the csv files containing rawdata for all four defintive host species
+2. Use the data to make visualizations and graphs
+
