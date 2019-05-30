@@ -74,3 +74,20 @@ legend(1910, 42= NULL, legend, fill = NULL, col = "blue","red","orange","blue",
        plot = TRUE, ncol = 1, horiz = FALSE, title = NULL,
        inset = 0, xpd, title.col = text.col, title.adj = 0.5,
        seg.len = 2)  
+
+#Making a map of collection sites
+#Trying to plot all of the lat and long points for each of the four host species 
+library(maps)
+library(mapdata)
+library(maptools) #for shapefiles
+library(scales) #for transparency
+map("worldHires","Canada",xlim=c(-127,-121),ylim=c(46,49),col="gray90",fill=TRUE)
+map("worldHires","USA",xlim=c(-127,-121),ylim=c(46,49),col="gray90",fill=TRUE,add=TRUE)
+#The following line of code is what I am having an issue with 
+points(L_bilineata$long,L_bilineata$lat, L_pacificus$long, L_pacificus$lat, P_vetulus$long, P_vetulus$lat, A_purpurescens$long_updated, A_purpurescens$lat_updated, pch=19,col="red",cex=0.5)
+box()
+library(maps)
+map.scale(x=-126.0, y=46.5, rot=0, cex=1)
+library(GISTools)
+compassRose (x=-125.5, y=47.5, rot=0, cex=1)
+map.axes()
